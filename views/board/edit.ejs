@@ -1,0 +1,60 @@
+<!--/views/board/edit.ejs-->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board/edit</title>
+</head>
+
+<body>
+    <div>
+        <a class="btn btn-info btn float-right" href="/board/">뒤로가기</a>
+    </div>
+    <% if (content.file_name != null) { %>
+        <div>
+            <a class="btn btn-primary" href="/img_files/<%= content.file_name %>" download>다운로드</a>
+        </div>
+        <br>
+        <img src="/img_files/<%= content.file_name %>" width="300" alt="이미지 에러!">
+    <% } %>
+
+        <form action="http://localhost:3000/board/update/<%= content.id %>" method="post">
+            <div style="border: 1px solid black;padding: 10px;">
+                제목: <input type="text" name="title" maxlength="50" value="<%= content.title %>">
+            </div>
+            <div style="border: 1px solid black;padding: 10px;">
+                <p class="t">글 내용</p>
+                <textarea name="content" max="75" placeholder="content"><%= content.content %></textarea>
+            </div>
+            <div style="border: 1px solid black;padding: 10px;">
+                <p class="t">태그</p>
+                <% if(allTag==null || allTag.length==0){ %>
+                    <P>태그 없음!</P> 
+                <% } %>
+                <% var tagcnt=0 %>
+                <% allTag.forEach(function(tag) { %>
+                    <% tagcnt++ %>
+                    <% if (tagcnt>5){ %>
+                        <br>
+                        <% tagcnt=0 %>
+                    <% } %>
+                    <input type="checkbox" name="tags" value="<%= tag.id %>" 
+                    <% if (content.Tags.find(tags=> tags.id == tag.id) != undefined){ %>
+                        checked
+                    <% } %>
+                    ><%= tag.tagname %>
+                <% }) %>
+            </div>
+            <input class="btn btn-success"type="submit" value="저장">
+        </form>
+    <div>
+        <form action="http://localhost:3000/board/delete/<%= content.id %>" method="post">
+            <input class="btn btn-danger"type="submit" value="삭제">
+        </form>
+    </div>
+</body>

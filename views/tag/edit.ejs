@@ -1,0 +1,70 @@
+<!--/views/tag/edit.ejs-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <%- include('../partials/head') %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/public/js/tag/tag_edit.js" defer></script>
+    <title>Board/tag</title>
+</head>
+
+<body>
+    <table class="table table-sm border-bottom">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">tagname</th>
+                <th scope="col">edit</th>
+                <th scope="col">delete</th>
+                <th scope="col">
+                    <a class="btn btn-info " href="/board/">뒤로가기</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(tags==null || tags.length==0){ %>
+                <tr>
+                    <td colspan = 3> 태그 없음! </td>
+                </tr>
+            <% } %>
+            <% tags.forEach(function(tag) { %>
+                <tr>
+                    <td>
+                        <span><%= tag.id %></span>
+                    </td>
+                    <td>
+                        <% if (tag.id==editid) { %>
+                            <form>
+                                <input id="newname" type="text" placeholder="tagname" value="<%= tag.tagname %>" >
+                                <input id="btn" class="btn btn-success"type="submit" min="'1" max="15" value="저장">
+                            </form>
+                        <% }else{ %>
+                            <span><%= tag.tagname %></span>
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if (tag.id==editid) { %>
+                        <a class="btn btn-secondary " href="/tag/">취소</a>
+                        <% } %>
+                    </td>
+                    <td>
+                        <form action="http://localhost:3000/tag/delete/<%= tag.id %>" method="post">
+                            <input class="btn btn-danger"type="submit" value="삭제">
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <br>
+    <p>태그 추가하기</p>
+    <div>
+        <form id="form">
+            <input id="tag" type="text" min="'1" max="15" placeholder="tagname">
+            <input class="btn btn-primary" id="btn" type="button" value="태그추가" >
+        </form>
+    </div>
+</body>

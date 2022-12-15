@@ -1,0 +1,49 @@
+<!--/views/board/up.ejs-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <%- include('../partials/head') %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board/up</title>
+</head>
+
+<body>
+    <h1>업로드</h1>
+    <div>
+        <a class="btn btn-info btn float-right" href="/board/">뒤로가기</a>
+    </div>
+    <form action="http://localhost:3000/board/upload" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+        <!--title-->
+        제목: <input type="text" name="title" maxlength="50">
+        <!--img-->
+        <p><input type="file" name="img" ></p>
+        <!--content(TEXT)-->
+        <textarea name="content" max="200" placeholder="content" ></textarea>
+        <!--tag-->
+        <br>태그선택
+        <a class="btn btn-primary" href="/tag">태그추가하기</a>
+        <br>
+        <% if(tags==null || tags.length==0){ %>
+            <P>태그 없음!</P> 
+        <% } %>
+        <% var tagcnt=0 %>
+        <% tags.forEach(function(tag) { %>
+            <% tagcnt++ %>
+            <% if (tagcnt>5){ %>
+                <br>
+                <% tagcnt=0 %>
+            <% } %>
+            <input type="checkbox" name="tags" value="<%= tag.id %>"><%= tag.tagname %>
+        <% }) %>
+        <!--creator-->
+        <br>
+        작성자: <input type="text" name="creator" value="Anonymous" maxlength="25">
+        <!--password-->
+        비밀번호: <input type="password" name="password" maxlength="25">
+        <br>
+        <input class="btn btn-primary" type="submit" value="작성">
+    </form>
+</body>

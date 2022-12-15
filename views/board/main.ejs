@@ -1,0 +1,47 @@
+<!--/views/board/index.ejs-->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/public/js/board/index.js" defer></script>
+    <title>Board</title>
+</head>
+
+<body>
+    <h1>사진공유 익명게시판</h1>
+    <a class="btn btn-primary" href="/board/upload">게시글 업로드</a>
+    <a class="btn btn-info" href="/tag">태그</a>
+    <table class="table table-sm border-bottom">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Uploader</th>
+                <!--<th scope="col">UpdatedAt</th>-->
+                <th scope="col">CreateAt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(contents==null || contents.length==0){ %>
+                <tr>
+                    <td colspan = 4> 게시글 없음! </td>
+                </tr>
+            <% } %>
+            <% contents.forEach(function(content) { %>
+                <tr onclick="location.href='http://localhost:3000/board/content/<%= content.id %>/'">
+                    <td><%= content.id %></td>
+                    <td><%= content.title %></td>
+                    <td><%= content.creator %></td>
+                    <td><%= content.createdAt %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

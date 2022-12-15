@@ -1,0 +1,103 @@
+<!--/views/board/content.ejs-->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/public/js/board/content.js" defer></script>
+    <script src="/public/js/board/comment.js" defer></script>
+    <title>Board/content</title>
+</head>
+
+<body>
+    <a class="btn btn-info btn float-right" href="/board/">뒤로가기</a>
+
+    <!--수정-비번체크-->
+    <div>
+        <button id="out_togle" class="btn btn-secondary" onclick="showPassword()">수정</button>
+        <div id="hidden" style="display: none;">
+            <form>
+                비밀번호: <input type="password" id="password" maxlength="25">
+                <input id="btn" class="btn btn-primary" value="확인">
+                <button id="in_togle" class="btn btn-secondary" onclick="showPassword()">취소</button>
+            </form>
+        </div>
+    </div>
+
+    <!--이미지 출력-->
+    <% if (content.file_name != null) { %>
+        <div>
+            <a class="btn btn-primary" href="/img_files/<%= content.file_name %>" download>다운로드</a>
+        </div>
+        <br>
+        <img src="/img_files/<%= content.file_name %>" width="300" alt="이미지 에러!">
+    <% } %>
+
+    <!--제목-->
+    <div style="border: 1px solid black;padding: 10px;">
+        <p class="t"><%= content.title %></p>
+    </div>
+
+    <!--내용-->
+    <div style="border: 1px solid black;padding: 10px;">
+        <p class="t">글 내용</p>
+        <p class="e" style="white-space: pre-line;"><%= content.content %></p>
+    </div>
+
+    <!--태그-->
+    <div style="border: 1px solid black;padding: 10px;">
+        <p class="t">태그</p>
+        <% if(conTag.Tags==null || conTag.Tags.length==0){ %>
+                <p> No Tag </p>
+        <% } %>
+        <% for(var tag of conTag.Tags) { %>
+            <p><%= tag.tagname %></p>
+        <% } %>
+    </div>
+
+    <!--댓글보기-->
+    <div style="border: 1px solid black;padding: 10px;">
+        <% if(comment.length==0){ %>
+            <p> No Comment </p>
+        <% } %>
+        <div>
+            <table class="table table-sm border-top border-dark" id="commentList">
+                <% for(var comments of comment){ %>
+                    <tr>
+                        <td  width="10%">작성자> <%= comments.creator %></td>
+                        <td width="10%" bordercolor="black">
+                            <form action="http://localhost:3000/board/commentDel/<%= comments.id %>" method="post">
+                                비밀번호: <input type="password" name="comment_password" maxlength="25">
+                                <input name="contentid" style="display: none;" value="<%= content.id %>">
+                                <input name="commentDel" type="submit" class="btn btn-danger" value="삭제">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  class="border-bottom ">
+                            <p class="bg-light"><%= comments.content %></p>
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+        
+    </div>
+
+    <!--댓글 달기-->
+    <div style="border: 1px solid black;padding: 10px;">
+        <form>
+            작성자: <input type="text" id="commentCreator" value="Anonymous" maxlength="50">
+            비밀번호: <input type="password" id="commentPassword" maxlength="25">
+            <br>
+            <textarea id="commentContent" max="75" placeholder="content" ></textarea>
+            <br>
+            <input id="commentbtn" class="btn btn-primary" value="작성">
+
+        </form>
+    </div>
+</body>
