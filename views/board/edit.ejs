@@ -23,7 +23,7 @@
         <img src="/img_files/<%= content.file_name %>" width="300" alt="이미지 에러!">
     <% } %>
 
-        <form action="http://localhost:3000/board/update/<%= content.id %>" method="post">
+        <form action="http://15.164.123.188:3000/board/update/<%= content.id %>" method="post">
             <div style="border: 1px solid black;padding: 10px;">
                 제목: <input type="text" name="title" maxlength="50" value="<%= content.title %>">
             </div>
@@ -53,7 +53,7 @@
             <input class="btn btn-success"type="submit" value="저장">
         </form>
     <div>
-        <form action="http://localhost:3000/board/delete/<%= content.id %>" method="post">
+        <form action="http://15.164.123.188:3000/board/delete/<%= content.id %>" method="post">
             <input class="btn btn-danger"type="submit" value="삭제">
         </form>
     </div>

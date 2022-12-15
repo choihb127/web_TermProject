@@ -70,7 +70,7 @@
                     <tr>
                         <td  width="10%">작성자> <%= comments.creator %></td>
                         <td width="10%" bordercolor="black">
-                            <form action="http://localhost:3000/board/commentDel/<%= comments.id %>" method="post">
+                            <form action="http://15.164.123.188:3000/board/commentDel/<%= comments.id %>" method="post">
                                 비밀번호: <input type="password" name="comment_password" maxlength="25">
                                 <input name="contentid" style="display: none;" value="<%= content.id %>">
                                 <input name="commentDel" type="submit" class="btn btn-danger" value="삭제">

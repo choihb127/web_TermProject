@@ -106,10 +106,10 @@ exports.upload = async (req, res) => {
         imgfile = { file_name: null, file_path: null };
     };
     if (title == '') { //제목, 내용 없이 제출시 alert과 리다이렉트
-        res.send("<script>alert('제목 필수!');window.location.href='http://localhost:3000/board/upload';</script>");
+        res.send("<script>alert('제목 필수!');window.location.href='http://15.164.123.188:3000/board/upload';</script>");
     }
     else if (content == '') {
-        res.send("<script>alert('내용 필수!');window.location.href='http://localhost:3000/board/upload';</script>");
+        res.send("<script>alert('내용 필수!');window.location.href='http://15.164.123.188:3000/board/upload';</script>");
     }
     else {
         Content.create({
