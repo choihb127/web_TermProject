@@ -145,7 +145,7 @@ exports.contentDelete = async (req, res) => {
         .then((data) => {
             var file_name = data.file_name;
             if (file_name != null) {
-                fs.unlinkSync('/VSCODE/WEB_PG/img_files/' + file_name);
+                fs.unlinkSync('/home/ubuntu/web_pg/web_TermProject/img_files' + file_name);
                 console.log("image delete");
             };
             Content.destroy({ where: { id: req.params.contentid } });

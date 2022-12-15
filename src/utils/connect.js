@@ -8,12 +8,12 @@ const Content = require('../models/content');
 const Tag = require('../models/tag');
 const Comment = require('../models/comment');
 
-//new sequelize로 MySQL 연결 객체 생성
+//new sequelize로 mysql 연결 객체 생성
 const sequelize = new Sequelize(
-    config.get('mysql.database'),
-    config.get('mysql.username'),
-    config.get('mysql.password'),
-    { host: config.get('mysql.host'), dialect: config.get('mysql.dialect') }
+    config.get('aws.database'),
+    config.get('aws.username'),
+    config.get('aws.password'),
+    { host: config.get('aws.host'), dialect: config.get('aws.dialect') }
 );
 
 const db = {};

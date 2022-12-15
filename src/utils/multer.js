@@ -23,7 +23,7 @@ const upload = multer({
     storage: multer.diskStorage({
         //폴더위치 지정
         destination: (req, file, done) => {
-            done(null, '/VSCODE/WEB_PG/img_files');
+            done(null, '/home/ubuntu/web_pg/web_TermProject/img_files');
         },
         filename: (req, file, done) => { //파일 이름지정
             const ext = path.extname(file.originalname);
