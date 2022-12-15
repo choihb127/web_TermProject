@@ -34,7 +34,7 @@ app.listen(port, () => {
     console.log("server on!");
 });
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     console.log("DB connecting Success!");
 }).catch((err) => {
     console.error(err);
