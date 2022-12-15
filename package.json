@@ -1,7 +1,7 @@
 {
-  "name": "web_TermProject",
+  "name": "web_termproject",
   "version": "1.0.0",
-  "description": "",
+  "description": "인터넷 컴퓨팅 TermProject 코드",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,5 +20,14 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.25.5",
     "sequelize-cli": "^6.5.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choihb127/web_TermProject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/choihb127/web_TermProject/issues"
+  },
+  "homepage": "https://github.com/choihb127/web_TermProject#readme"
 }
